@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Edit Profile | MilestonePay</title>
+    <style>
+        :root {
+            --bg-deep: #0a0e1b;
+            --bg-card: #141a2e;
+            --bg-input: #1b243d;
+            --text-main: #f8f9fa;
+            --text-mute: #8b9bb4;
+            --accent-blue: #0d6efd;
+        }
+
+        body { background-color: var(--bg-deep); color: var(--text-main); font-family: 'Inter', sans-serif; }
+        .card-custom { background: var(--bg-card); border: 1px solid #1f2946; border-radius: 20px; }
+        .form-control { 
+            background-color: var(--bg-input) !important; 
+            border: 1px solid #2c3a5e !important; 
+            color: white !important; 
+            border-radius: 10px;
+        }
+        .form-control:focus { border-color: var(--accent-blue) !important; box-shadow: none; }
+        .btn-save { background: white; color: black; font-weight: bold; border-radius: 50px; padding: 10px 40px; border: none; }
+        .btn-save:hover { background: var(--accent-blue); color: white; }
+    </style>
+</head>
+<body>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="fw-bold m-0">Account Settings</h3>
+                <a href="/dashboard" class="text-mute text-decoration-none small">← Cancel</a>
+            </div>
+
+            <div class="card-custom p-4 shadow-lg">
+                <form action="/update-profile" method="POST" enctype="multipart/form-data">
+                    
+                    <div class="text-center mb-4">
+                        <img src="https://ui-avatars.com/api/?name=<%= profile.name %>&background=random" class="rounded-circle mb-2" width="80">
+                        <p class="small text-mute">Avatar is generated from your name</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small text-mute uppercase">Full Name</label>
+                        <input type="text" name="name" class="form-control" value="<%= profile.name %>" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small text-mute uppercase">Professional Bio</label>
+                        <textarea name="bio" class="form-control" rows="3" placeholder="Tell us about your expertise..."><%= profile.bio %></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small text-mute uppercase">Skills (Comma separated)</label>
+                        <input type="text" name="skills" class="form-control" value="<%= profile.skills %>" placeholder="e.g. Node.js, Design, Python">
+                    </div>
+
+                    <% if (profile.role === 'freelancer') { %>
+                        <div class="mb-4">
+                            <label class="form-label small text-mute uppercase">Resume / Portfolio (PDF)</label>
+                            <input type="file" name="resumeFile" class="form-control">
+                            <% if (profile.resume) { %>
+                                <small class="text-success mt-2 d-block">✓ Resume already uploaded</small>
+                            <% } %>
+                        </div>
+                    <% } %>
+
+                    <div class="text-center mt-5">
+                        <button type="submit" class="btn-save shadow w-100">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

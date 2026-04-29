@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title><%= freelancer.name %> | MilestonePay</title>
+    <style>
+        :root {
+            --bg-deep: #0a0e1b;
+            --bg-card: #141a2e;
+            --text-main: #f8f9fa;
+            --text-mute: #8b9bb4;
+            --accent-green: #2ecc71;
+        }
+
+        body { background-color: var(--bg-deep); color: var(--text-main); font-family: 'Inter', sans-serif; }
+        
+        .profile-card { 
+            background: var(--bg-card); 
+            border: 1px solid #1f2946; 
+            border-radius: 24px; 
+            padding: 50px;
+            margin-top: 50px;
+        }
+
+        .resume-viewer {
+            background: rgba(46, 204, 113, 0.1);
+            border: 2px dashed var(--accent-green);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn-resume {
+            background-color: var(--accent-green);
+            color: white;
+            font-weight: bold;
+            padding: 12px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="profile-card shadow-lg">
+                <div class="text-center mb-5">
+                    <img src="https://ui-avatars.com/api/?name=<%= freelancer.name %>&size=120&background=random" class="rounded-circle mb-3 border border-3 border-primary p-1">
+                    <h2 class="fw-bold"><%= freelancer.name %></h2>
+                    <span class="badge bg-primary px-3 py-2 text-uppercase"><%= freelancer.role %></span>
+                </div>
+
+                <div class="mb-4">
+                    <h6 class="text-primary fw-bold text-uppercase small mb-2">Professional Bio</h6>
+                    <p class="lead" style="color: #ced4da;">
+                        <%= freelancer.bio ? freelancer.bio : "No bio provided by this professional." %>
+                    </p>
+                </div>
+
+                <div class="mb-5">
+                    <h6 class="text-primary fw-bold text-uppercase small mb-2">Skills</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <% if (freelancer.skills && freelancer.skills.length > 0) { %>
+                            <% freelancer.skills.split(',').forEach(function(skill) { %>
+                                <span class="badge border border-secondary text-secondary rounded-pill px-3 py-2">
+                                    <%= skill.trim() %>
+                                </span>
+                            <% }); %>
+                        <% } else { %>
+                            <span class="text-muted small">No specific skills listed.</span>
+                        <% } %>
+                    </div>
+                </div>
+
+                <div class="resume-viewer">
+                    <h5 class="fw-bold mb-3">Portfolio & Verification</h5>
+                    <% if (freelancer.resume) { %>
+                        <p class="text-mute small mb-4">Click below to view the full professional resume/portfolio.</p>
+                        <a href="<%= freelancer.resume %>" target="_blank" class="btn-resume">
+                            📄 View Resume
+                        </a>
+                    <% } else { %>
+                        <p class="text-muted m-0">This freelancer has not uploaded a resume yet.</p>
+                    <% } %>
+                </div>
+
+                <div class="text-center mt-5">
+                    <a href="/dashboard" class="text-decoration-none text-muted small">← Back to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

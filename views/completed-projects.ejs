@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Project Archive | MilestonePay</title>
+    <style>
+        :root {
+            --bg-deep: #0a0e1b;
+            --bg-card: #141a2e;
+            --text-main: #f8f9fa;
+            --text-mute: #8b9bb4;
+            --accent-green: #2ecc71;
+        }
+
+        body { background-color: var(--bg-deep); color: var(--text-main); font-family: 'Inter', sans-serif; }
+        
+        .nav-custom { background: var(--bg-deep) !important; border-bottom: 1px solid #1f2946; }
+        
+        .card-custom { 
+            background: var(--bg-card); 
+            border: 1px solid #1f2946; 
+            border-radius: 16px; 
+            transition: 0.3s;
+        }
+
+        .status-badge {
+            background: rgba(46, 204, 113, 0.1);
+            color: var(--accent-green);
+            border: 1px solid var(--accent-green);
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg nav-custom mb-5 shadow-sm">
+    <div class="container py-2">
+        <a class="navbar-brand text-primary fw-bold fs-4" href="/dashboard">MilestonePay</a>
+        <div class="ms-auto">
+            <a href="/dashboard" class="btn btn-outline-light btn-sm px-4" style="border-radius: 50px;">← Back to Dashboard</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h2 class="fw-bold mb-2 text-white">Project Archive</h2>
+            <p class="text-mute mb-5">History of all successfully finalized and paid milestones.</p>
+
+            <div class="row g-4">
+                <% if (projects.length === 0) { %>
+                    <div class="col-12">
+                        <div class="card-custom p-5 text-center">
+                            <p class="text-mute m-0">You haven't completed any projects yet. Start working to build your history!</p>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <% projects.forEach(project => { %>
+                        <div class="col-md-6">
+                            <div class="card-custom p-4 h-100">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <h5 class="fw-bold text-white mb-0"><%= project.title %></h5>
+                                    <span class="status-badge">Completed</span>
+                                </div>
+                                
+                                <p class="small text-white opacity-75 mb-4">
+                                    All milestones were successfully delivered and approved by the client.
+                                </p>
+
+                                <div class="d-flex justify-content-between align-items-center pt-3 border-top border-secondary border-opacity-25">
+                                    <span class="text-mute small">Total Payout</span>
+                                    <span class="fw-bold text-success fs-5">
+                                        $<%= project.milestones.reduce((acc, m) => acc + parseInt(m.amount), 0) %>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

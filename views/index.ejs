@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milestone-Pay | The Future of Freelancing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #334155;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            color: #0f172a !important;
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        /* Professional Hero Section */
+        .hero {
+            background: #0f172a;
+            /* Deep professional navy */
+            color: white;
+            padding: 160px 0 100px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+            color: #f8fafc;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            max-width: 650px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .btn-custom {
+            border-radius: 8px;
+            /* More professional than pills */
+            padding: 12px 32px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-custom-primary {
+            background: #2563eb;
+            color: white;
+            border: none;
+        }
+
+        .btn-custom-primary:hover {
+            background: #1d4ed8;
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-custom-outline {
+            background: transparent;
+            color: white;
+            border: 1px solid #475569;
+        }
+
+        .btn-custom-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border-color: #64748b;
+        }
+
+        /* How it works toggle */
+        .toggle-switch {
+            display: inline-flex;
+            background: white;
+            border-radius: 50px;
+            border: 1px solid #cbd5e1;
+            padding: 4px;
+        }
+
+        .toggle-option {
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #475569;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .toggle-option.active {
+            background: #0f172a;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Categories */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 80px;
+        }
+
+        .category-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px 20px;
+            color: #334155;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .category-card:hover,
+        .category-card.active {
+            border-color: #22c55e;
+            color: #15803d;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.1);
+        }
+
+        /* Skills Section */
+        .skills-section {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            border-radius: 16px;
+            padding: 40px 50px;
+            color: white;
+            margin-bottom: 80px;
+        }
+
+        .skills-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .skills-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .skills-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-skill-search {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        .btn-skill-search:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-skill-continue {
+            background: white;
+            color: #166534;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 24px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        .btn-skill-continue:hover {
+            background: #f0fdf4;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .skill-pill {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 10px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .skill-pill:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Top Users Cards */
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #0f172a;
+            letter-spacing: -0.5px;
+        }
+
+        .user-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+            height: 100%;
+        }
+
+        .user-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .avatar-placeholder {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #64748b;
+            margin-bottom: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">MilestonePay</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <% if (session && session.userId) { %>
+                        <li class="nav-item">
+                            <span class="nav-link" style="color: #64748b;">Welcome, <strong style="color: #0f172a;">
+                                    <%= session.userName %>
+                                </strong></span>
+                        </li>
+                        <li class="nav-item ms-3">
+                            <a class="btn btn-dark btn-sm px-4 py-2 fw-semibold rounded-pill"
+                                href="<%= session.role === 'admin' ? '/admin-dashboard' : '/dashboard' %>">Go to
+                                Dashboard</a>
+                        </li>
+                        <% } else { %>
+                            <li class="nav-item">
+                                <a class="nav-link fw-semibold" href="/login" style="color: #475569;">Log In</a>
+                            </li>
+                            <li class="nav-item ms-lg-2">
+                                <a class="btn btn-outline-secondary btn-sm px-3 rounded-pill fw-medium"
+                                    href="/login">Admin Portal</a>
+                            </li>
+                            <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="container">
+            <h1>Work securely. Earn fairly.</h1>
+            <p>The enterprise-grade freelancing platform engineered for trust. Guaranteed payment security through
+                automated, transparent milestones. Find top talent or your next contract today.</p>
+
+            <% if (!session || !session.userId) { %>
+                <div class="d-flex justify-content-center gap-3 mt-2 flex-wrap">
+                    <a href="/register?role=freelancer" class="btn-custom btn-custom-primary">Find Work</a>
+                    <a href="/register?role=client" class="btn-custom btn-custom-outline">Hire Talent</a>
+                </div>
+                <% } %>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Popular services -->
+        <div class="mb-4">
+            <h3 class="fw-bold mb-0" style="color: #334155; font-size: 1.5rem; letter-spacing: -0.5px;">Popular services
+            </h3>
+        </div>
+
+        <!-- Categories Grid -->
+        <div class="category-grid">
+            <a href="/search?q=AI" class="category-card active">AI Services</a>
+            <a href="/search?q=Development" class="category-card">Development & IT</a>
+            <a href="/search?q=Design" class="category-card">Design & Creative</a>
+            <a href="/search?q=Sales" class="category-card">Sales & Marketing</a>
+            <a href="/search?q=Writing" class="category-card">Writing & Translation</a>
+            <a href="/search?q=Admin" class="category-card">Admin & Support</a>
+            <a href="/search?q=Finance" class="category-card">Finance & Accounting</a>
+            <a href="/search?q=Legal" class="category-card">Legal</a>
+            <a href="/search?q=HR" class="category-card">HR & Training</a>
+            <a href="/search?q=Engineering" class="category-card">Engineering & Architecture</a>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="skills-section shadow-sm">
+            <style>
+                .skills-actions input::placeholder { color: rgba(255,255,255,0.8); }
+                .skills-actions input:focus { background-color: rgba(255,255,255,0.1); color: white; border-color: white; box-shadow: none; }
+            </style>
+            <div class="skills-header">
+                <h2 class="skills-title">Find freelancers by relevant AI Services skills</h2>
+                <form action="/search" method="GET" class="skills-actions m-0">
+                    <input type="text" name="q" class="form-control bg-transparent text-white" placeholder="Search custom skills..." style="border: 1px solid white; border-radius: 6px;">
+                    <button type="submit" class="btn-skill-continue shadow-sm">Search</button>
+                </form>
+            </div>
+            <div class="skills-grid">
+                <a href="/search?q=Artificial Intelligence" class="skill-pill text-white text-decoration-none"><span>Artificial Intelligence</span><span>+</span></a>
+                <a href="/search?q=Machine Learning" class="skill-pill text-white text-decoration-none"><span>Machine Learning</span><span>+</span></a>
+                <a href="/search?q=Python" class="skill-pill text-white text-decoration-none"><span>Python</span><span>+</span></a>
+                <a href="/search?q=Deep Learning" class="skill-pill text-white text-decoration-none"><span>Deep Learning</span><span>+</span></a>
+                <a href="/search?q=Data Science" class="skill-pill text-white text-decoration-none"><span>Data Science</span><span>+</span></a>
+                <a href="/search?q=TensorFlow" class="skill-pill text-white text-decoration-none"><span>TensorFlow</span><span>+</span></a>
+                <a href="/search?q=Neural Network" class="skill-pill text-white text-decoration-none"><span>Artificial Neural Network</span><span>+</span></a>
+                <a href="/search?q=Scikit-Learn" class="skill-pill text-white text-decoration-none"><span>Python Scikit-Learn</span><span>+</span></a>
+                <a href="/search?q=deeplearn.js" class="skill-pill text-white text-decoration-none"><span>deeplearn.js</span><span>+</span></a>
+                <a href="/search?q=Natural Language Processing" class="skill-pill text-white text-decoration-none"><span>Natural Language Proc...</span><span>+</span></a>
+                <a href="/search?q=Data Analysis" class="skill-pill text-white text-decoration-none"><span>Data Analysis</span><span>+</span></a>
+                <a href="/search?q=Neural Network" class="skill-pill text-white text-decoration-none"><span>Neural Network</span><span>+</span></a>
+                <a href="/search?q=Keras" class="skill-pill text-white text-decoration-none"><span>Keras</span><span>+</span></a>
+                <a href="/search?q=Apache Mahout" class="skill-pill text-white text-decoration-none"><span>Apache Mahout</span><span>+</span></a>
+                <a href="/search?q=Computer Vision" class="skill-pill text-white text-decoration-none"><span>Computer Vision</span><span>+</span></a>
+                <a href="/search?q=R" class="skill-pill text-white text-decoration-none"><span>R</span><span>+</span></a>
+                <a href="/search?q=Data Mining" class="skill-pill text-white text-decoration-none"><span>Data Mining</span><span>+</span></a>
+                <a href="/search?q=Cloudera" class="skill-pill text-white text-decoration-none"><span>Cloudera</span><span>+</span></a>
+            </div>
+        </div>
+
+        <!-- Top Users -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h3 class="section-title">Top Registered Freelancers</h3>
+            </div>
+            <% if (topFreelancers && topFreelancers.length===0) { %>
+                <div class="col-12">
+                    <p class="text-muted">No freelancers registered yet.</p>
+                </div>
+                <% } else if (topFreelancers) { %>
+                    <% topFreelancers.forEach(freelancer=> { %>
+                        <div class="col-md-4 mb-4">
+                            <div class="card user-card p-4 text-center">
+                                <div class="d-flex justify-content-center">
+                                    <div class="avatar-placeholder">
+                                        <%= freelancer.name.charAt(0).toUpperCase() %>
+                                    </div>
+                                </div>
+                                <h5 class="mb-1 fw-bold" style="color: #0f172a;">
+                                    <%= freelancer.name %>
+                                </h5>
+                                <p class="small fw-medium mb-3" style="color: #2563eb;">
+                                    <%= freelancer.skills || "Professional Specialist" %>
+                                </p>
+                                <p class="small text-muted mb-0 text-truncate">
+                                    <%= freelancer.bio || "Available for milestone contracts." %>
+                                </p>
+                            </div>
+                        </div>
+                        <% }) %>
+                            <% } %>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <h3 class="section-title">Top Registered Clients</h3>
+            </div>
+            <% if (topClients && topClients.length===0) { %>
+                <div class="col-12">
+                    <p class="text-muted">No clients registered yet.</p>
+                </div>
+                <% } else if (topClients) { %>
+                    <% topClients.forEach(client=> { %>
+                        <div class="col-md-4 mb-4">
+                            <div class="card user-card p-4 text-center">
+                                <div class="d-flex justify-content-center">
+                                    <div class="avatar-placeholder" style="background: #e0e7ff; color: #4338ca;">
+                                        <%= client.name.charAt(0).toUpperCase() %>
+                                    </div>
+                                </div>
+                                <h5 class="mb-1 fw-bold" style="color: #0f172a;">
+                                    <%= client.name %>
+                                </h5>
+                                <p class="small text-muted fw-medium mb-0">Hiring Manager</p>
+                            </div>
+                        </div>
+                        <% }) %>
+                            <% } %>
+        </div>
+    </div>
+
+    <!-- How it Works (At Last) -->
+    <div class="row mt-5 mb-5 align-items-center">
+        <div class="col-12 d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+            <h3 class="fw-bold mb-0" style="color: #0f172a; font-size: 2rem; letter-spacing: -0.5px;">How it works</h3>
+            <div class="toggle-switch">
+                <div class="toggle-option active" id="toggle-hiring">For hiring</div>
+                <div class="toggle-option" id="toggle-work">For finding work</div>
+            </div>
+        </div>
+
+        <div class="col-12" id="hiring-content">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm p-4">
+                        <h5 class="fw-bold text-primary">1. Post a job</h5>
+                        <p class="text-muted">Tell us about your project. Milestone-Pay connects you with top talent
+                            around the world.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm p-4">
+                        <h5 class="fw-bold text-primary">2. Choose freelancers</h5>
+                        <p class="text-muted">Get qualified proposals within 24 hours. Compare bids, reviews, and prior
+                            work.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm p-4">
+                        <h5 class="fw-bold text-primary">3. Pay securely</h5>
+                        <p class="text-muted">Use our milestone system. Only pay for work when it has been completed and
+                            you're 100% satisfied.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 d-none" id="work-content">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm p-4">
+                        <h5 class="fw-bold text-success">1. Create a profile</h5>
+                        <p class="text-muted">Highlight your skills and experience, show your portfolio, and set your
+                            ideal pay rate.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm p-4">
+                        <h5 class="fw-bold text-success">2. Find projects</h5>
+                        <p class="text-muted">Search on our job board and apply for projects that match your unique
+                            skills.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm p-4">
+                        <h5 class="fw-bold text-success">3. Get paid safely</h5>
+                        <p class="text-muted">With our milestone protection, you're guaranteed to be paid for the work
+                            you deliver.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Interactive toggle logic for 'How it works' section
+        const btnHiring = document.getElementById('toggle-hiring');
+        const btnWork = document.getElementById('toggle-work');
+        const contentHiring = document.getElementById('hiring-content');
+        const contentWork = document.getElementById('work-content');
+
+        if (btnHiring && btnWork) {
+            btnHiring.addEventListener('click', function () {
+                btnHiring.classList.add('active');
+                btnWork.classList.remove('active');
+                contentHiring.classList.remove('d-none');
+                contentWork.classList.add('d-none');
+            });
+
+            btnWork.addEventListener('click', function () {
+                btnWork.classList.add('active');
+                btnHiring.classList.remove('active');
+                contentWork.classList.remove('d-none');
+                contentHiring.classList.add('d-none');
+            });
+        }
+    </script>
+</body>
+
+</html>
