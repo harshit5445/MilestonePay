@@ -2,12 +2,12 @@
 
 MilestonePay is a platform designed to seamlessly manage freelance projects, securely track payments, and provide a dedicated support/resolution center for user disputes.
 
-## 🚀 Technologies Used
+## Technologies Used
 * **Backend:** Node.js, Express.js
 * **Database:** MongoDB
 * **Frontend:** EJS (Embedded JavaScript templates), HTML, CSS, Bootstrap
 
-## ⚙️ Getting Started
+## Getting Started
 
 Follow these instructions to get a copy of the project up and running on your local machine.
 
@@ -42,7 +42,7 @@ Make sure you have [Node.js](https://nodejs.org/) and [Git](https://git-scm.com/
 5. **Open in Browser:**
    Visit `http://localhost:3000` to view the application.
 
-## 🛡️ Features
+## Features
 * User Authentication & Role Management (Freelancers, Clients, Admins)
 * Dashboard for tracking active and completed projects
 * Earnings and Wallet management
